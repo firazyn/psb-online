@@ -94,6 +94,27 @@ class Admin extends BaseController
 		return view('/admin/edit', $data);
 	}
 
+	public function detail($username)
+	{
+		if (session()->get('role') != 'admin') {
+			return redirect()->to('/admin/logout');
+		}
+
+		$data = [
+			'title' => 'AdminPSB | Detail Data Calon',
+			'validation' => \config\services::validation(),
+			'calon' => $this->calonModel->getCalon($username)
+		];
+
+		return view('/admin/detail', $data);
+	}
+
+	// public function download($id)
+	// {
+	// 	$data = $this->calonModel->download($id);
+	// 	dd($this->response->download('bukti/' . $data['bukti_pembayaran'], null));
+	// }
+
 	public function update($id)
 	{
 		if (session()->get('role') != 'admin') {

@@ -39,6 +39,8 @@ $routes->get('/', 'User::home');
 $routes->get('/create', 'User::create');
 $routes->get('/edit/(:any)', 'User::edit/$1');
 $routes->get('/admin/edit/(:any)', 'Admin::edit/$1');
+$routes->get('/admin/detail/(:any)', 'Admin::detail/$1');
+$routes->get('/admin/download/(:any)', 'Admin::download/$1');
 
 /*
  * --------------------------------------------------------------------

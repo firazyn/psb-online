@@ -29,6 +29,7 @@
                                 <td><?= $c['wali_calon'] ?></td>
                                 <td><?= $c['status_calon'] ?></td>
                                 <td>
+                                    <a href="<?= base_url() ?>/admin/detail/<?= $c['user_calon']; ?>" class="btn btn-success">Detail</a>
                                     <a href="<?= base_url() ?>/admin/edit/<?= $c['user_calon']; ?>" class="btn btn-warning">Edit</a>
                                     <a href="<?= base_url() ?>/admin/delete/<?= $c['id'] ?>" class="btn btn-danger" onclick="return confirm ('Apakah anda yakin?');">Delete</a>
                                 </td>

@@ -32,6 +32,22 @@ class Calon extends Migration
 				'type'           => 'VARCHAR',
 				'constraint'     => '100'
 			],
+			'nilai_saintek'      => [
+				'type'           => 'VARCHAR',
+				'constraint'     => '3'
+			],
+			'nilai_soshum'      => [
+				'type'           => 'VARCHAR',
+				'constraint'     => '3'
+			],
+			'nilai_bahasa'      => [
+				'type'           => 'VARCHAR',
+				'constraint'     => '3'
+			],
+			'bukti_pembayaran'      => [
+				'type'           => 'VARCHAR',
+				'constraint'     => '100'
+			],
 			'created_at' => [
 				'type'           => 'DATETIME',
 				'null'     		 => TRUE,

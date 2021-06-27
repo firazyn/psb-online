@@ -37,7 +37,7 @@ class Filters extends BaseConfig
 		'after'  => [
 			'authFilter' => ['except' => [
 				'/', '/create', '/edit/*', '/admin', '/admin/edit/*',
-				'/admin/userlist', '/admin/editUser/*'
+				'/admin/userlist', '/admin/editUser/*', '/admin/detail/*'
 			]],
 			'toolbar',
 			// 'honeypot',

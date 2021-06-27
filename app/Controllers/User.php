@@ -166,9 +166,6 @@ class User extends BaseController
 
     public function edit($username)
     {
-        if (session()->get('role') == 2) {
-            return redirect()->to('/');
-        }
 
         $data = [
             'title' => 'PSB | Ubah Data Calon',
@@ -187,18 +184,38 @@ class User extends BaseController
         $rules = [
             'nama' => 'required',
             'wali' => 'required',
+            'nilai_saintek' => 'required',
+            'nilai_soshum' => 'required',
+            'nilai_bahasa' => 'required',
+            'bukti' => [
+                'rules' => 'uploaded[bukti]|max_size[bukti,40000]|is_image[bukti]|mime_in[bukti,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'uploaded' => 'Please select a picture',
+                    'max_size' => 'The picture size is too large (max: 40MB)',
+                    'is_image' => 'The uploaded file is not an image',
+                    'mime_in' => 'The uploaded file format is not supported',
+                ]
+            ],
         ];
 
-        if ($this->validate($rules)) {
+        $savePicture = $request->getFile('bukti');
+        // dd($this->calonModel->save($data));
 
-            //Saves the data to the table
-            $this->calonModel->save([
+        if ($this->validate($rules)) {
+            $savePicture->move('bukti');
+            $data = [
                 'id' => $id,
                 'nama_calon' => $request->getVar('nama'),
                 'wali_calon' => $request->getVar('wali'),
-            ]);
+                'nilai_saintek' => $request->getVar('nilai_saintek'),
+                'nilai_soshum' => $request->getVar('nilai_soshum'),
+                'nilai_bahasa' => $request->getVar('nilai_bahasa'),
+                'bukti_pembayaran' => $savePicture->getName(),
+            ];
 
-            return redirect()->to('/');
+            $this->calonModel->save($data);
+
+            //Saves the data to the table
         } else {
             return redirect()->to('/edit/' . $request->getVar('user'))->withInput();
         }
